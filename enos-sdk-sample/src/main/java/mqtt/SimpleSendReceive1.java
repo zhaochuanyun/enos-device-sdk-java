@@ -52,8 +52,8 @@ public class SimpleSendReceive1 {
     static class SimpleServiceHandler implements IMessageHandler<ServiceInvocationCommand, ServiceInvocationReply> {
         @Override
         public ServiceInvocationReply onMessage(ServiceInvocationCommand arrivedMessage, List<String> argList) throws Exception {
-            System.out.println(arrivedMessage);
-            if (arrivedMessage.<Map<String, String>>getParams().containsKey("i1")) {
+            System.err.println(arrivedMessage);
+            if (arrivedMessage.<Map<String, String>>getParams().containsKey("parameterID1")) {
                 return ServiceInvocationReply.builder()
                         .setOutputDatas(Collections.singletonMap("o1", new Random().nextInt(10)))
                         .setCode(200)           // 200 means a success reply
@@ -77,7 +77,7 @@ public class SimpleSendReceive1 {
         client.getProfile().setConnectionTimeout(60).setAutoReconnect(true);
 
         // Sample: set handler to handle measurepoint set commands
-        client.setArrivedMsgHandler(MeasurepointSetCommand.class, new TemperatureSetHandler());
+        // client.setArrivedMsgHandler(MeasurepointSetCommand.class, new TemperatureSetHandler());
 
         client.setArrivedMsgHandler(ServiceInvocationCommand.class, new SimpleServiceHandler());
 
@@ -85,7 +85,7 @@ public class SimpleSendReceive1 {
         // connect to EnOS Cloud and register callbacks. onConnectSuccess method will be called
         client.connect();
 
-        int loop = 10000;
+        int loop = 1;
         while ((--loop) >= 0) {
             try {
                 // device tags samples
