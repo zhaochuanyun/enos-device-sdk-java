@@ -18,7 +18,10 @@ buildNumber.properties
 # About IntelliJ
 *.iml
 .idea
+.idea/
 .idea/*
+.idea/compiler.xml
+.idea/jarRepositories.xml
 /.idea/
 /out/
 
