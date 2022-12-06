@@ -17,6 +17,8 @@ buildNumber.properties
 
 # About IntelliJ
 *.iml
+.idea
+.idea/*
 /.idea/
 /out/
 
